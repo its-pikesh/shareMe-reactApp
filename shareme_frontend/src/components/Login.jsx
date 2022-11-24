@@ -4,13 +4,27 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc'
 import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png'
-import {gapi} from 'gapi-script'
+import { gapi } from 'gapi-script'
+import {client} from '../client'
 
 
-const login = () => {
+const Login = () => {
+  const navigate = useNavigate();
   const responseGoogle = (response) => {
-    console.log(response)
-    
+    console.log(response);
+    localStorage.setItem('user',JSON.stringify(response.profileObj))
+    const { name, googleId, imageUrl } = response.profileObj;
+    const doc = {
+      _id: googleId,
+      _type: 'user',
+      userName: name,
+      image: imageUrl
+    }
+    client.createIfNotExists(doc)
+      .then(() => {
+        navigate('/',{replace : true})
+      
+    })
   }
   gapi.load("client:auth2", () => {
     gapi.client.init({
@@ -53,4 +67,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login
