@@ -6,12 +6,15 @@
 # frontend node modules
 /shareme_frontend/node_modules
 
+/shareme_frontend/.env
+
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# testingg
 /coverage
 
 # production
