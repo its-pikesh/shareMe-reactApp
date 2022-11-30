@@ -11,7 +11,7 @@ const Sidebar = ({ user, closeToggle }) => {
     "flex items-center px-3 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize";
 
   const categories = [
-    { name: "Animals" },
+    { name: "AnimalDs" },
     { name: "Wallpapers" },
     { name: "Photography" },
     { name: "Gaming" },
@@ -35,7 +35,7 @@ const Sidebar = ({ user, closeToggle }) => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? isActiveStyle : isNotActiveStyle
+             ( isActive ? isActiveStyle : isNotActiveStyle)
             }
             onClick={handleCloseSidebar}
           >
@@ -49,7 +49,7 @@ const Sidebar = ({ user, closeToggle }) => {
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) =>
-                isActive ? isActiveStyle : isNotActiveStyle
+                (isActive ? isActiveStyle : isNotActiveStyle)
               }
               onClick={handleCloseSidebar}
               key={category.name}

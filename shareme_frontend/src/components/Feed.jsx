@@ -6,16 +6,16 @@ import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
 
 const Feed = () => {
-  const [loading, setLoading] = useState(true);
-  const [pins, setPins] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [pins, setPins] = useState();
   const { categoryId } = useParams();
 
   useEffect(() => {
-    setLoading(true);
     if (categoryId) {
+      setLoading(true);
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
-        console.log(data.save,"use eff feed")
+        console.log(data,"pik")
         setPins(data);
         setLoading(false);
       });
@@ -25,10 +25,15 @@ const Feed = () => {
         setLoading(false);
       });
     }
-  }, [categoryId,pins?.save]);
-  // if (loading)
-  //   return <Spinner message="We are adding new ideas to your feed!" />;
-  return <div>{pins && <MasonryLayout pins={pins} />}</div>;
+  }, [categoryId]);
+  if (loading)
+     return <Spinner message="We are adding new ideas to your feed!" />;
+  return (
+    <div>
+    {pins && (
+      <MasonryLayout pins={pins} />
+    )}
+  </div>);
 };
 
 export default Feed;
