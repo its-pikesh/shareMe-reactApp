@@ -15,19 +15,17 @@ const Feed = () => {
     if (categoryId) {
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
-        console.log(data);
+        console.log(data.save,"use eff feed")
         setPins(data);
         setLoading(false);
       });
     } else {
       client.fetch(feedQuery).then((data) => {
-        console.log(data, "2");
         setPins(data);
         setLoading(false);
       });
     }
-  }, [categoryId]);
-  console.log(pins, "pins");
+  }, [categoryId,pins?.save]);
   // if (loading)
   //   return <Spinner message="We are adding new ideas to your feed!" />;
   return <div>{pins && <MasonryLayout pins={pins} />}</div>;

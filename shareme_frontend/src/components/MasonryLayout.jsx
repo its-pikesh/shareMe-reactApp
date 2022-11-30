@@ -11,7 +11,6 @@ const breakpointObj = {
   500: 1,
 };
 const MasonryLayout = ({ pins }) => {
-  console.log(pins, "masonry");
   return (
     <div>
       <Masonry
