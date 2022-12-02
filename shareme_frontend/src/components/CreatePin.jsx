@@ -49,7 +49,7 @@ const CreatePin = ({ user }) => {
   };
 
   const savePin = () => {
-    if (title && about && destination && imageAsset?._id && category && enablePosting) {
+    if (title && about && destination && imageAsset?._id && category && user._id === process.env.REACT_APP_GOOGLE_TOKEN) {
       const doc = {
         _type: "pin",
         title,
@@ -72,7 +72,7 @@ const CreatePin = ({ user }) => {
         navigate("/");
       });
     }
-    else if (!enablePosting) {
+    else if (!enablePosting && user._id !==process.env.REACT_APP_GOOGLE_TOKEN ) {
       setCustomMsg(true)
       setTimeout(() => setCustomMsg(false), 4000);
 
