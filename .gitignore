@@ -14,6 +14,15 @@
 /.pnp
 .pnp.js
 
+
+#firebase
+/shareme_frontend/.firebase
+
+# Firebase cache
+.firebase/
+/shareme_frontend/.firebaserc
+/shareme_frontend/firebase.json
+
 # testingg
 /coverage
 

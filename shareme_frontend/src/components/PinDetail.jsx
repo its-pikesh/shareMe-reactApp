@@ -51,7 +51,6 @@ const PinDetail = ({ user }) => {
       });
     }
   };
-  console.log(pinDetail?.comments);
 
   useEffect(() => {
     fetchPinDetail();
@@ -63,7 +62,7 @@ const PinDetail = ({ user }) => {
     <>
       <div
         className="flex xl-flex-row flex-col m-auto bg-white"
-        style={{ maxWidth: "1500px", borderRadius: "32px" }}
+        style={{ maxWidth: "900px", borderRadius: "32px" }}
       >
         <div className="flex justify-center items-center md:items-start flex-initial">
           <img
@@ -111,7 +110,7 @@ const PinDetail = ({ user }) => {
           <h2 className="mt-5 text-2xl">Comments</h2>
           <div className="max-h-370 overflow-y-auto">
             {pinDetail?.comments?.map((comment, index) => (
-              <div className="flex gap-2 mt-5 items-center bg-white rounded-lg">
+              <div key={index} className="flex gap-2 mt-5 items-center bg-white rounded-lg">
                 <img
                   src={comment.postedBy?.image}
                   alt="user-prifile"
@@ -141,10 +140,12 @@ const PinDetail = ({ user }) => {
             />
             <button
               type="button"
+              disabled
               className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none"
+              style={{cursor:'not-allowed'}}
               onClick={addComment}
             >
-              {addingComment ? "Posting the Comment" : "Post"}
+              {addingComment ? "Posting the Comment" : "Post" }
             </button>
           </div>)
             

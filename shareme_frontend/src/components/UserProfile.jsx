@@ -39,8 +39,6 @@ const UserProfile = () => {
     else {
       const savedPinsQuery = userSavedPinsQuery(userId);
       client.fetch(savedPinsQuery).then((data) => {
-        console.log(data,'saved')
-
         setPins(data)
       })
       

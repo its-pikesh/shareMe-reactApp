@@ -20,7 +20,7 @@ const Pins = ({ user }) => {
           user={user && user}
         ></Navbar>
       </div>
-      <div className="h-ful">
+      <div className="h-full">
         <Routes>
           <Route path="/" element={<Feed />} />
           <Route path="/category/:categoryId" element={<Feed />} />

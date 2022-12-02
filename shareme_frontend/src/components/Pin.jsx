@@ -18,14 +18,14 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     
 
   const savePin = (id) => {
-    if (alreadySaved?.length === 0) {
+    if (alreadySaved?.length === 0 && user) {
       client
         .patch(id)
         .setIfMissing({ save: [] })
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user.sub,
+            userId: user?.sub,
             postedBy: {
               _type: "postedBy",
               _ref: user?.sub,
@@ -49,7 +49,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
       <div
         onMouseEnter={() => setPostHovered(true)}
         onMouseLeave={() => setPostHovered(false)}
-        onClick={() => navigate(`pin-detail/${_id}`)}
+        onClick={() => navigate(`/pin-detail/${_id}`)}
         className="relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
       >
         <img
@@ -88,7 +88,6 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 <button
                   type="button"
                   onClick={(e) => {
-                    console.log(alreadySaved, "save button");
                     savePin(_id);
                     e.stopPropagation();
                   }}
@@ -116,7 +115,6 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 <button
                   type="button"
                   onClick={(e) => {
-                    console.log(alreadySaved, "save button");
                     e.stopPropagation();
                     deletePin(_id);
                   }}
@@ -130,7 +128,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         )}
       </div>
       <Link
-        to={`user-profile/${postedBy?.id}`}
+        to={`user-profile/${postedBy?._id}`}
         className="flex gap-2 mt-2 items-center"
       >
         <img
@@ -138,7 +136,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
           alt="user-Image"
           className="w-8 h-8 rounded-full object-cover"
         />
-        <p className="font-semibold capitalize">{ postedBy?.name}</p>
+        <p className="font-semibold capitalize">{ postedBy?.userName}</p>
       </Link>
     </div>
   );

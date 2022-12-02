@@ -15,7 +15,6 @@ const Feed = () => {
       setLoading(true);
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => {
-        console.log(data,"pik")
         setPins(data);
         setLoading(false);
       });
